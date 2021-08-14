@@ -1,5 +1,8 @@
 #include "main.hpp"
 
+#include <stdio.h>
+#include <string.h>
+
 #include <psp2/kernel/processmgr.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/apputil.h>
@@ -20,15 +23,26 @@
 #include "screens/installer.hpp"
 
 
-void initSceAppUtil() {
+void initSceAppUtil(SharedData &sharedData) {
 
 	// Init SceAppUtil
 	SceAppUtilInitParam init_param;
 	SceAppUtilBootParam boot_param;
 	memset(&init_param, 0, sizeof(SceAppUtilInitParam));
 	memset(&boot_param, 0, sizeof(SceAppUtilBootParam));
+	
+	// Check for -lite
 	sceAppUtilInit(&init_param, &boot_param);
-
+	SceAppUtilAppEventParam eventParam;
+	memset(&eventParam, 0, sizeof(SceAppUtilAppEventParam));
+	sceAppUtilReceiveAppEvent(&eventParam);
+	if (eventParam.type == 0x05) {
+		char buffer[2048];
+		sceAppUtilAppEventParseLiveArea(&eventParam, buffer);
+		if (strstr(buffer, "-lite"))
+			sharedData.liteMode = true;
+	}
+	
 	// Set common dialog config
 	SceCommonDialogConfigParam config;
 	sceCommonDialogConfigParamInit(&config);
@@ -38,7 +52,11 @@ void initSceAppUtil() {
 }
 
 int main() {
-	initSceAppUtil();
+	vita2d_init();
+	
+	SharedData sharedData;
+	
+	initSceAppUtil(sharedData);
 	sceShellUtilInitEvents(0); // Init SceShellUtil events
 	StartNoSleepThread(); // Sleep invalidates file descriptors
 	
@@ -48,11 +66,7 @@ int main() {
         if (updaterPkg.IsInstalled())
             updaterPkg.Uninstall();
     }
-
-	vita2d_init();
 	
-	SharedData sharedData;
-
 	Filesystem::removePath(std::string(PACKAGE_TEMP_FOLDER));
 	Filesystem::removePath("ux0:data/Easy_VPK");
 	Filesystem::mkDir("ux0:data/Easy_VPK");

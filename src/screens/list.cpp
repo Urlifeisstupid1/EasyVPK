@@ -79,7 +79,7 @@ void List::draw(SharedData &sharedData, unsigned int button) {
 				sharedData.blockCross = true;
 				sharedData.screenshots.clear();
 
-				if (sharedData.vpks[sharedData.cursorY]["screenshots"].get<string>() != "") {
+				if (!sharedData.liteMode && sharedData.vpks[sharedData.cursorY]["screenshots"].get<string>() != "") {
 					if (!sharedData.screenshots.empty()) {
 						for (int i = 0; i < sharedData.screenshots.size(); i++)
 							if (sharedData.screenshots[i])

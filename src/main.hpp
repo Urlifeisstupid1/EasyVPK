@@ -30,6 +30,7 @@ extern unsigned int basicfont_size;
 extern unsigned char basicfont[];
 
 struct SharedData {
+	bool liteMode = false;
 	int scene = 0;
 	int cursorY = 0;
 	bool blockCross 	= false;
@@ -40,7 +41,7 @@ struct SharedData {
 	bool blockSelect 	= false;
 	bool blockLTrigger 	= false;
 	bool blockRTrigger 	= false;
-	bool initDetail  = true;
+	bool initDetail = true;
 	int dl_type_sd = 0; // VPK
 	string vpkDownloadPath = "ux0:VPK/";
 	vector<vita2d_texture *> screenshots;
