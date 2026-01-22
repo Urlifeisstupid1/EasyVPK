@@ -83,6 +83,7 @@ target_link_libraries(${SHORT_NAME}
 	png
 	jpeg
 	z
+	bz2
 	m
 	c
 	ScePgf_stub
@@ -121,11 +122,12 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
 	FILE src/graphics/navbar3.png resources/navbar3.png
 	FILE src/graphics/navbar4.png resources/navbar4.png
 	
-	FILE build/easyvpk_updater.self resources/updater/eboot.bin
-	FILE build/easyvpk_updater_param.sfo resources/updater/param.sfo
+#	FILE build/easyvpk_updater.self resources/updater/eboot.bin
+#	FILE build/easyvpk_updater_param.sfo resources/updater/param.sfo
 )
 
-add_dependencies(${SHORT_NAME}.vpk
+add_custom_target(${SHORT_NAME}_vpk_target DEPENDS
+    ${SHORT_NAME}.vpk
 	easyvpk_updater.self
 	easyvpk_updater_param.sfo
 )
