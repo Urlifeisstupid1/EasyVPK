@@ -23,4 +23,4 @@ make
 - [Rinnegatamante](https://github.com/Rinnegatamante) for helping with VitaDB and other shenanigans
 - [devnoname120](https://github.com/devnoname120) for creating [vhbb](https://github.com/devnoname120/vhbb).
 - [DRok17](https://github.com/DRok17) for the splashscreen image
-- [DmitryDMR](https://github.com/DmitryDMR) fixed the connection to [www.rinnegatamante](https://www.rinnegatamante.eu/vitadb)
+- [DmitryDMR](https://github.com/DmitryDMR) fixed the connection to [vitaDB](https://www.rinnegatamante.eu/vitadb)
