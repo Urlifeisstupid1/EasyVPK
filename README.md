@@ -2,7 +2,7 @@
 EasyVPK is an easy to use hombrew application for the PSVITA that downloads vpks and data files from [VitaDB](https://vitadb.rinnegatamante.it/#/).
 
 ## "Planned features"
-- Please suggest new features on my Twitter [@Electric1447](https://twitter.com/Electric1447)
+- Please suggest new features to me on discord @urliffisstupid
 
 ## Building
 
